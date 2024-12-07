@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .budget-section,
+  .expense-section,
+  .summary-section {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .summary-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .summary-item {
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1;
+    margin: 0 5px;
+  }
+  
+  .summary-item h2 {
+    margin-bottom: 10px;
+  }
+  
+  #expense-list {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #expense-list th,
+  #expense-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #expense-list th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  #expense-list tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #expense-list tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e53935;
+  }
+  
