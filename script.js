@@ -1,17 +1,28 @@
-// Select elements
 const budgetInput = document.getElementById('budget');
 const setBudgetBtn = document.getElementById('set-budget-btn');
 const budgetDisplay = document.getElementById('budget-display');
 const expensesDisplay = document.getElementById('expenses-display');
 const balanceDisplay = document.getElementById('balance-display');
-const expenseDetailsInput = document.getElementById('expense-details');
+const expenseCategoryDropdown = document.getElementById('expense-category');
+const customDetailsInput = document.getElementById('expense-custom-details');
 const expenseAmountInput = document.getElementById('expense-amount');
 const expenseDateInput = document.getElementById('expense-date');
+const expenseRemarksInput = document.getElementById('expense-remarks');
 const addExpenseBtn = document.getElementById('add-expense-btn');
 const expenseList = document.querySelector('#expense-list tbody');
 
 let totalBudget = 0;
 let totalExpenses = 0;
+
+// Show/Hide custom details input based on dropdown selection
+expenseCategoryDropdown.addEventListener('change', () => {
+  if (expenseCategoryDropdown.value === 'Others') {
+    customDetailsInput.style.display = 'inline-block';
+    customDetailsInput.value = '';
+  } else {
+    customDetailsInput.style.display = 'none';
+  }
+});
 
 // Update displayed values
 function updateDisplays() {
@@ -34,37 +45,38 @@ setBudgetBtn.addEventListener('click', () => {
 
 // Add expense
 addExpenseBtn.addEventListener('click', () => {
-  const details = expenseDetailsInput.value.trim();
+  const category =
+    expenseCategoryDropdown.value === 'Others'
+      ? customDetailsInput.value.trim()
+      : expenseCategoryDropdown.value;
+
   const amount = parseFloat(expenseAmountInput.value);
   const date = expenseDateInput.value;
+  const remarks = expenseRemarksInput.value.trim();
 
-  if (!details || isNaN(amount) || amount <= 0 || !date) {
+  if (!category || isNaN(amount) || amount <= 0 || !date) {
     alert('Please fill out all fields correctly!');
     return;
   }
 
-  // Add expense row to the table
   const row = document.createElement('tr');
-
   row.innerHTML = `
-    <td>${details}</td>
+    <td>${category}</td>
     <td>$${amount.toFixed(2)}</td>
     <td>${date}</td>
+    <td>${remarks || 'N/A'}</td> <!-- Display remarks, or 'N/A' if empty -->
     <td><button class="delete-btn">Delete</button></td>
   `;
 
   expenseList.appendChild(row);
 
-  // Update totals
   totalExpenses += amount;
   updateDisplays();
 
-  // Clear inputs
-  expenseDetailsInput.value = '';
   expenseAmountInput.value = '';
   expenseDateInput.value = '';
+  expenseRemarksInput.value = ''; // Clear remarks field
 
-  // Delete functionality
   row.querySelector('.delete-btn').addEventListener('click', () => {
     row.remove();
     totalExpenses -= amount;
